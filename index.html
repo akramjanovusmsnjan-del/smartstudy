@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART STUDY | Aqlli ta'lim</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>SMART STUDY</h2>
+                <span>AI EDUCATION</span>
+            </div>
+        </div>
+
+        <div class="menu-title">ASOSIY MENYU</div>
+
+        <nav>
+            <button class="nav-btn active" data-page="home">
+                <span>⌂</span> Bosh sahifa
+            </button>
+            <button class="nav-btn" data-page="solver">
+                <span>∑</span> Masala yechish
+            </button>
+            <button class="nav-btn" data-page="tests">
+                <span>▤</span> Test yaratish
+            </button>
+            <button class="nav-btn" data-page="exam">
+                <span>✓</span> Bilimni tekshirish
+            </button>
+            <button class="nav-btn" data-page="results">
+                <span>◈</span> Natijalar
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="gold-line"></div>
+            <p>Bilim — kelajak kaliti.</p>
+            <span>SMART STUDY © 2026</span>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <span class="top-label">AQLLI TA'LIM PLATFORMASI</span>
+                <h2 id="pageTitle">Bosh sahifa</h2>
+            </div>
+
+            <div class="profile">
+                <div class="status-dot"></div>
+                <span>O'quvchi</span>
+                <div class="avatar">S</div>
+            </div>
+        </header>
+
+        <!-- BOSH SAHIFA -->
+        <section class="page active" id="home">
+
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="hero-tag">✦ KELAJAKNI BILIM BILAN YARAT</span>
+                    <h1>SMART <span>STUDY</span></h1>
+                    <p>
+                        O'rganing, masalalarni yeching, bilimingizni
+                        sinang va o'z natijalaringizni kuzating.
+                    </p>
+                    <button class="gold-btn" onclick="showPage('solver')">
+                        Masala yechish <span>→</span>
+                    </button>
+                </div>
+                <div class="hero-symbol">S</div>
+            </div>
+
+            <div class="section-heading">
+                <h3>O'quv faoliyati</h3>
+                <span>Shaxsiy ko'rsatkichlar</span>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-icon">∑</div>
+                    <p>Yechilgan masalalar</p>
+                    <h2 id="solvedCount">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">▤</div>
+                    <p>Bajarilgan testlar</p>
+                    <h2 id="testCount">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">★</div>
+                    <p>Jami ball</p>
+                    <h2 id="totalScore">0</h2>
+                </div>
+            </div>
+
+            <div class="section-heading">
+                <h3>Platforma imkoniyatlari</h3>
+                <span>O'rganishni boshlang</span>
+            </div>
+
+            <div class="features">
+
+                <div class="feature-card" onclick="showPage('solver')">
+                    <div class="feature-icon">📷</div>
+                    <h3>Masala yechish</h3>
+                    <p>Masalani yozing yoki rasmini yuklang.</p>
+                    <span>BOSHLASH →</span>
+                </div>
+
+                <div class="feature-card" onclick="showPage('tests')">
+                    <div class="feature-icon">📝</div>
+                    <h3>Test yaratish</h3>
+                    <p>Turli fanlardan yangi testlar yarating.</p>
+                    <span>BOSHLASH →</span>
+                </div>
+
+                <div class="feature-card" onclick="showPage('exam')">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Bilimni tekshirish</h3>
+                    <p>O'z bilimingizni sinab ko'ring.</p>
+                    <span>BOSHLASH →</span>
+                </div>
+
+                <div class="feature-card" onclick="showPage('results')">
+                    <div class="feature-icon">📊</div>
+                    <h3>Natijalar</h3>
+                    <p>O'zlashtirish ko'rsatkichlarini kuzating.</p>
+                    <span>BOSHLASH →</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- MASALA YECHISH -->
+        <section class="page" id="solver">
+
+            <div class="section-heading">
+                <h3>Masala yechish markazi</h3>
+                <span>Matematik yordamchi</span>
+            </div>
+
+            <div class="panel">
+                <h3>📷 Masalani suratga olish</h3>
+                <p class="muted">Rasm yuklang. Tizim undagi matnni aniqlashga harakat qiladi.</p>
+
+                <label class="upload-area" for="imageInput">
+                    <div class="upload-icon">⬆</div>
+                    <h3>Rasmni shu yerga yuklang</h3>
+                    <p>JPG, PNG yoki JPEG</p>
+                    <span>RASМ TANLASH</span>
+                </label>
+
+                <input type="file" id="imageInput" accept="image/*" hidden>
+
+                <img id="preview" class="preview" alt="Yuklangan rasm">
+
+                <button class="gold-btn" id="ocrBtn" onclick="readImage()" hidden>
+                    RASMDAGI MATNNI ANIQLASH
+                </button>
+
+                <div id="ocrStatus" class="result-box" hidden></div>
+            </div>
+
+            <div class="panel">
+                <h3>∑ Masalani kiriting</h3>
+                <p class="muted">Masalan: 25 + 35 * 2 yoki 2x + 3 = 11</p>
+
+                <textarea id="problemInput" placeholder="Masalani shu yerga yozing..."></textarea>
+
+                <button class="gold-btn" onclick="solveProblem()">
+                    YECHIMNI KO'RISH →
+                </button>
+
+                <div id="solution" class="solution" hidden></div>
+            </div>
+
+        </section>
+
+        <!-- TEST YARATISH -->
+        <section class="page" id="tests">
+
+            <div class="section-heading">
+                <h3>Test yaratish</h3>
+                <span>Bilimingizni rivojlantiring</span>
+            </div>
+
+            <div class="panel">
+                <h3>⚙ Test sozlamalari</h3>
+
+                <label>Fanni tanlang</label>
+                <select id="subject">
+                    <option value="math">Matematika</option>
+                    <option value="programming">Dasturlash</option>
+                    <option value="english">Ingliz tili</option>
+                </select>
+
+                <label>Savollar soni</label>
+                <select id="questionCount">
+                    <option value="5">5 ta savol</option>
+                    <option value="10">10 ta savol</option>
+                </select>
+
+                <button class="gold-btn" onclick="generateTest()">
+                    TEST YARATISH →
+                </button>
+            </div>
+
+            <div id="testPreview" class="panel" hidden>
+                <h3>📋 Yaratilgan test</h3>
+                <div id="testQuestions"></div>
+                <button class="gold-btn" onclick="startTest()">
+                    TESTNI BOSHLASH
+                </button>
+            </div>
+
+        </section>
+
+        <!-- BILIMNI TEKSHIRISH -->
+        <section class="page" id="exam">
+
+            <div class="section-heading">
+                <h3>Bilimni tekshirish</h3>
+                <span>Imtihon markazi</span>
+            </div>
+
+            <div class="panel">
+                <div class="exam-top">
+                    <span>SMART EXAM</span>
+                    <span id="progressText">0 / 0</span>
+                </div>
+
+                <div class="progress">
+                    <div id="progressBar"></div>
+                </div>
+
+                <div id="examContent">
+                    <div class="empty-state">
+                        <div>🎓</div>
+                        <h3>Bilimingizni sinashga tayyormisiz?</h3>
+                        <p>Avval Test yaratish bo'limiga o'ting.</p>
+                        <button class="gold-btn" onclick="showPage('tests')">
+                            TEST YARATISH
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- NATIJALAR -->
+        <section class="page" id="results">
+
+            <div class="section-heading">
+                <h3>Mening natijalarim</h3>
+                <span>Shaxsiy statistika</span>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <p>Yechilgan masalalar</p>
+                    <h2 id="resultSolved">0</h2>
+                </div>
+                <div class="stat-card">
+                    <p>Testlar soni</p>
+                    <h2 id="resultTests">0</h2>
+                </div>
+                <div class="stat-card">
+                    <p>Jami ball</p>
+                    <h2 id="resultScore">0</h2>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>📈 So'nggi natijalar</h3>
+                <div id="historyList">
+                    <p class="muted">Hozircha natijalar mavjud emas.</p>
+                </div>
+            </div>
+
+            <button class="danger-btn" onclick="clearHistory()">
+                Natijalarni tozalash
+            </button>
+
+        </section>
+
+        <footer>
+            <div class="footer-logo">SMART STUDY</div>
+            <p>Bilim — eng katta kuch.</p>
+            <span>© 2026 SMART STUDY. Barcha huquqlar himoyalangan.</span>
+        </footer>
+
+    </main>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
